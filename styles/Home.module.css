@@ -1,3 +1,4 @@
+
 .main {
     display: flex;
     flex-direction: column;
@@ -7,8 +8,15 @@
   }
   .header {
     width: auto;
+    color: rgb(29, 29, 29);
+
   }
-  .header p {
+  .header p { 
+    font-size: 2rem;
+    color: rgb(29, 29, 29);
+    margin: 0;
+    padding: 0;
+
     text-align: center;
   }
   .cloudform {
@@ -22,8 +30,8 @@
     width: 75vw;
     border-radius: 0.5rem;
     border: 1px solid #33e7ff;
-    background: #ffffff;
-    color: #000;
+    background: #191919;
+    color: #ffffff;
     outline: none;
   }
   
@@ -33,7 +41,7 @@
   
   .textarea:focus {
     outline: none;
-    border-color: #6b7c80;
+    border-color: #6de4ff;
     box-shadow: 0 0 0 3px rgba(156, 171, 175, 0.5);
   }
   
@@ -45,7 +53,7 @@
     position: absolute;
     top: 0.87rem;
     right: 1rem;
-    color: rgb(162, 165, 165);
+    color: rgb(32, 201, 201);
     background: none;
     padding: 0.3rem;
     border: none;
@@ -87,7 +95,7 @@
   }
   
   .usermessage {
-    background: #ffffff;
+    background: #1a1a1a;
     padding: 1.5rem;
     color: #000;
   }
@@ -113,7 +121,7 @@
   }
   
   .apimessage {
-    background: #f9fafb;
+    background: #2a2a2a;
     padding: 1.5rem;
     color: #000;
     animation: fadein 0.5s;
@@ -143,12 +151,12 @@
   }
   
   .markdownanswer a {
-    color: #b13a3a;
+    color: #ff0c0c;
     font-weight: 500;
   }
   
   .markdownanswer code {
-    color: #15cb19;
+    color: #2bff00;
     font-weight: 500;
     white-space: pre-wrap !important;
   }
@@ -183,7 +191,7 @@
   .cloud {
     width: 75vw;
     height: 65vh;
-    background: #ffffff;
+    background: #1e1e1e;
     border-radius: 0.5rem;
     border: 1px solid #d9d9e3;
     display: flex;
@@ -252,3 +260,4 @@
       text-align: center;
     }
   }
+

@@ -25,7 +25,7 @@ export default function Home() {
   }>({
     messages: [
       {
-        message: 'What do you need to freshen up on in databases?',
+        message: 'Ask me about CS186. I know all the content. I can promptly answer your every query. Better than Alvin Cheung too 😉',
         type: 'apiMessage',
       },
     ],
@@ -238,9 +238,11 @@ export default function Home() {
           </main>
         </div>
         <footer className="m-auto p-4">
-          <a href="https://github.com/vdutts7">
-            Chatbot powered by Raghu Ramakrishnan and Johannes Gehrke's Database Management Systems [2nd edition]. Demo built by vdutts7 (Twitter: @vdutts7).
-          </a>
+          <div>
+            Answers sourced from 
+            <u><i><a> Database Management Systems [2nd edition]</a></i></u> by <u><a href="mailto:raghu@cs.wisc.edu">Raghu Ramakrishnan</a></u> & <u><a href="mailto:johannes@cs.cornell.edu">Johannes Gehrke</a></u>. Demo built by
+            <a href="https://twitter.com/vdutts7/"> <u>Vivek</u></a>. Full project can be found <u><a href="https://github.com/vdutts7/db-ramakrish/">here</a></u>
+          </div>
         </footer>
       </Layout>
     </>
