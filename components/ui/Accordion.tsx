@@ -1,7 +1,8 @@
 import * as React from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
-import { cn } from '@/utils/cn';
 import { ChevronDown } from 'lucide-react';
+
+import { cn } from '@/utils/cn';
 
 const Accordion = AccordionPrimitive.Root;
 
@@ -10,7 +11,11 @@ const AccordionItem = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Item
-    ref={ref} className={cn('border-b border-b-slate-200 dark:border-b-slate-700', className, )}
+    ref={ref}
+    className={cn(
+      'border-b border-b-slate-200 dark:border-b-slate-700',
+      className,
+    )}
     {...props}
   />
 ));
@@ -35,12 +40,14 @@ const AccordionTrigger = React.forwardRef<
   </AccordionPrimitive.Header>
 ));
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
+
 const AccordionContent = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Content>
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
-    ref={ref} className={cn(
+    ref={ref}
+    className={cn(
       'data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up overflow-hidden text-sm transition-all',
       className,
     )}
@@ -50,4 +57,5 @@ const AccordionContent = React.forwardRef<
   </AccordionPrimitive.Content>
 ));
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;
+
 export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
