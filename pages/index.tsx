@@ -5,45 +5,45 @@ import { fetchEventSource } from '@microsoft/fetch-event-source';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import LoadingDots from '@/components/ui/LoadingDots';
-import { Message } from '@/types/chat';
 
-export default function Home() {
-  const [query, setQuery] = useState<string>('');
-  const [loading, setLoading] = useState<boolean>(false);
-  const [messageState, setMessageState] = useState<{
-    messages: Message[];
-    pending?: string;
-    history: [string, string][];
-  }>({
-    messages: [
-      {
-        message: 'Greetings, UC Berkeley engineer 🐻. Ask me anything about the CS186 website. I am trained on ~ The Corpus ~ which includes: \n Syllabus, Course Notes, and past semesters iterations of course websites. Coming soon: all past exams and worksheets. I am here to serve you and answer your queries to the best of my ability. Stay on topic please; being confined to this website, I cannot play games!',
-        type: 'apiMessage',
-      },
-    ],
-    history: [],
-  });
+  type Message = {
+    message: string;
+    type: 'apiMessage' | 'userMessage';
+    };
+
+  export default function Home() {
+    const [query, setQuery] = useState<string>('');
+    const [loading, setLoading] = useState<boolean>(false);
+    const [messageState, setMessageState] = useState<{
+      messages: Message[];
+      pending?: string;
+      history: [string, string][];
+    }>(
+    
+    {
+      messages: [
+        {
+          message: 'Greetings, UC Berkeley engineer 🐻. Ask me anything about the CS186 website. I am trained on ~ The Corpus ~ which includes: \n Syllabus, Course Notes, and past semesters iterations of course websites. Coming soon: all past exams and worksheets. I am here to serve you and answer your queries to the best of my ability. Stay on topic please; being confined to this website, I cannot play games!',
+          type: 'apiMessage',
+        },
+      ],
+      history: [],
+    });
 
   const { messages, pending, history } = messageState;
-
   const messageListRef = useRef<HTMLDivElement>(null);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-
   useEffect(() => {
     textAreaRef.current?.focus();
   }, []);
 
-  //handle form submission
   async function handleSubmit(e: any) {
     e.preventDefault();
-
     if (!query) {
       alert('Please input a question');
       return;
     }
-
     const question = query.trim();
-
     setMessageState((state) => ({
       ...state,
       messages: [
@@ -59,9 +59,7 @@ export default function Home() {
     setLoading(true);
     setQuery('');
     setMessageState((state) => ({ ...state, pending: '' }));
-
     const ctrl = new AbortController();
-
     try {
       fetchEventSource('/api/chat', {
         method: 'POST',
