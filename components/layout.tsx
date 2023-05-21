@@ -14,7 +14,7 @@ export default function Layout({ children }: LayoutProps) {
           </nav>
         </div>
       </header>
-      <div>
+      <div className="container">
         <main className="flex w-full flex-1 flex-col overflow-hidden">
           {children}
         </main>

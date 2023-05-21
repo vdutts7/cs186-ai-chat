@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { OpenAIEmbeddings } from 'langchain/embeddings/openai';
-import { PineconeStore } from 'langchain/vectorstores/pinecone';
+import { OpenAIEmbeddings } from 'langchain/embeddings';
+import { SupabaseVectorStore } from 'langchain/vectorstores';
+import { openai } from '@/utils/openai-client';
+import { supabaseClient } from '@/utils/supabase-client';
 import { makeChain } from '@/utils/makechain';
-import { getPinecone } from '@/utils/pinecone-client';
-import { PINECONE_INDEX_NAME, PINECONE_NAMESPACE } from '@/config/pinecone';
 
 export default async function handler(
   req: NextApiRequest,
@@ -11,46 +11,48 @@ export default async function handler(
 ) {
   const { question, history } = req.body;
 
-  console.log('question', question);
-
-  if (req.method !== 'POST') {
-    res.status(405).json({ error: 'Only POST requests please! Other methods not allowed!' });
-    return;
-  }
-
   if (!question) {
     return res.status(400).json({ message: 'No question in the request' });
   }
   // OpenAI recommends replacing newlines with spaces for best results
   const sanitizedQuestion = question.trim().replaceAll('\n', ' ');
 
+  /* create vectorstore*/
+  const vectorStore = await SupabaseVectorStore.fromExistingIndex(
+    supabaseClient,
+    new OpenAIEmbeddings(),
+  );
+
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache, no-transform',
+    Connection: 'keep-alive',
+  });
+
+  const sendData = (data: string) => {
+    res.write(`data: ${data}\n\n`);
+  };
+
+  sendData(JSON.stringify({ data: '' }));
+
+  const model = openai;
+  // create the chain
+  const chain = makeChain(vectorStore, (token: string) => {
+    sendData(JSON.stringify({ data: token }));
+  });
+
   try {
-    const pinecone = await getPinecone();
-    const index = pinecone.Index(PINECONE_INDEX_NAME);
-
-    const vectorStore = await PineconeStore.fromExistingIndex(
-      new OpenAIEmbeddings({}),
-      {
-        pineconeIndex: index,
-        textKey: 'text',
-        namespace: PINECONE_NAMESPACE,
-      },
-    );
-
-    //create the chain
-    const chain = makeChain(vectorStore);
-
-
-    //Ask q, test if chat history works
+    //Ask a question
     const response = await chain.call({
       question: sanitizedQuestion,
       chat_history: history || [],
     });
 
     console.log('response', response);
-    res.status(200).json(response);
-  } catch (error: any) {
-    console.log('error', error);
-    res.status(500).json({ error: error.message || 'Oopsie poopsie, something failed' });
+  } catch (error) {
+    console.log('Oopsie poopsie, something failed', error);
+  } finally {
+    sendData('[DONE]');
+    res.end();
   }
 }
