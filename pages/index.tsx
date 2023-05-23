@@ -147,11 +147,11 @@ import LoadingDots from '@/components/ui/LoadingDots';
                   } else {
                     icon = (
                       <Image
-                        src="/usericon.png"
+                        src="/bear.png"
                         alt="Me"
                         width="30"
                         height="30"
-                        className={styles.usericon}
+                        className={styles.bear}
                         priority
                       />
                     );
