@@ -145,7 +145,7 @@ Edit prompt template in `utils/makechain.ts` to fine-tune and add greater contro
 
 `me@vdutts7.com` 
 
-🔗 Project Link: https://github.com/vdutts7/cs186b-ai-chat
+🔗 Project Link: https://github.com/vdutts7/cs186-ai-chat
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
