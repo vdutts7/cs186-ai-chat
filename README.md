@@ -33,7 +33,7 @@
 <!-- ABOUT -->
 ## 📝 About
 
-More natural way to help students study for exams, review weekly content, and customize learnings to recreate similar problems etc to their prefernce. Trained on entire CS186 textbook by Ramakrishnan. CS186B students, staff, and more generally anyone can clone and use this repo and adjust to their liking.
+More natural way to help students study for exams, review weekly content, and customize learnings to recreate similar problems etc to their prefernce. Trained on entire CS186 textbook by Ramakrishnan. CS186 students, staff, and more generally anyone can clone and use this repo and adjust to their liking.
 
 _UC Berkeley 🐻🔵🟡 • CS186: Introduction to Database Systems • Spring 2023_ 
 
