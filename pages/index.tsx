@@ -124,7 +124,7 @@ import LoadingDots from '@/components/ui/LoadingDots';
             CS186 AI Chatbot
           </h1>
           <h2 className="text-1xl font-italic leading-[1.1] tracking-tighter text-center">
-            Trained on <i>The Corpus</i>  
+            Trained on <i>Class Notes</i>  
           </h2>
           <main className={styles.main}>
             <div className={styles.cloud}>
@@ -202,7 +202,7 @@ import LoadingDots from '@/components/ui/LoadingDots';
                   >
                     {loading ? (
                       <div className={styles.loadingwheel}>
-                        <LoadingDots color="#000" />
+                        <LoadingDots color="#30D5C8" />
                       </div>
                     ) : (
                       // Send icon SVG in input field
@@ -222,9 +222,9 @@ import LoadingDots from '@/components/ui/LoadingDots';
         </div>
         <footer className="m-auto">
           <div>
-              Chatbot answers are provided based on 'The Corpus' of text data available on the  
+              Chatbot answers are provided based on Class Notes available on the  
               <u><i><a href="https://cs186berkeley.net/"> CS186 Course Website</a></i></u> Demo built by
-              <a href="https://twitter.com/vdutts7/"> <u>Vivek D. </u></a>Full project can be found <u><a href="https://github.com/vdutts7/db-ramakrish/">here.</a></u>
+              <a href="https://twitter.com/vdutts7/"> <u>Vivek D. </u></a>Full project can be found <u><a href="https://github.com/vdutts7/cs186-ai-chat">here.</a></u>
           </div>
         </footer>
       </Layout>
