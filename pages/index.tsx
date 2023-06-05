@@ -23,7 +23,7 @@ import LoadingDots from '@/components/ui/LoadingDots';
     {
       messages: [
         {
-          message: 'Greetings, UC Berkeley engineer 🐻. Ask me anything about the CS186 website. I am trained on ~ The Corpus ~ which includes: \n Syllabus, Course Notes, and past semesters iterations of course websites. Coming soon: all past exams and worksheets. I am here to serve you and answer your queries to the best of my ability. Stay on topic please; being confined to this website, I cannot play games!',
+          message: 'Greetings, UC Berkeley engineer 🐻. Ask me about CS186. I am trained on the Notes. Soon will be adding: \n Worksheets, Syllabus, and past exams. I will try to answer your queries to the best of my ability. I am an AI so please be patient if I brain-fart. As always, be respectful and stay on topic please.',
           type: 'apiMessage',
         },
       ],
