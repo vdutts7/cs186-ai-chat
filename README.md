@@ -45,7 +45,7 @@ _Note: macOS version, adjust accordingly for Windows / Linux_
 
 ### Initial setup
 
-Clone this repo & install packages using pnpm
+Clone the repo and install dependencies.
 
 ```
 git clone https://github.com/vdutts7/cs186-ai-chat
@@ -53,19 +53,18 @@ cd cs186-ai-chat
 pnpm install
 ```
 
-Copy `.env.local.example` into `.env` which should look like this (order doesn't matter):
+Create a .env file and add your API keys (refer `.env.local.example` for this template):
 
 ```
 OPENAI_API_KEY=""
-
 NEXT_PUBLIC_SUPABASE_URL=""
 NEXT_PUBLIC_SUPABASE_ANON_KEY=""
 SUPABASE_SERVICE_ROLE_KEY=""
 ```
 
-Check out [OpenAI](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key) on how to get an API key
-
-Check out [Supabase](https://supabase.com/) on how to create a new project, database, and get keys from settings all found in [docs instructions](https://supabase.com/docs)
+Get API keys:
+- [OpenAI](https://help.openai.com/en/articles/4936850-where-do-i-find-my-secret-api-key)
+- [Supabase](https://supabase.com/docs) 
 
 _**IMPORTANT: Verify that `.gitignore` contains `.env` in it.**_
 
