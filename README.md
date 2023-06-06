@@ -71,70 +71,71 @@ _**IMPORTANT: Verify that `.gitignore` contains `.env` in it.**_
 
 ### Prepare Supabase environment
 
-I used Supabase as my vectorstore. Alternatives include: Pinecone, Qdrant, Redis, Weaviate, Chroma, Nuclei, Milvus, FAISS, HNSWLib and many more you can research about. Most are free or open-source. 
+I used Supabase as my vectorstore. _Alternatives: Pinecone, Qdrant, Weaviate, Chroma, etc. _
 
-Copy paste contents of `schema.sql` in SQL editor of Supabase. Ensure the `documents` table in Supabase's database that is created matches and corresponds with local file's `match_documents` function.
+You should have already created a Supabase project to get your API keys. Inside the project's SQL editor, create a new query and run the `schema.sql`. You should now have a `documents` table created with 4 columns.
 
 
-### Embedding & upserting data into Supabase vectorstore
+### Scraping, embedding, & upserting data
 
-Inside the `config` folder is the `transcripts` folder with all lectures as .txt files and the corresponding JSON files for the metadatas. .txt files were scraped from the lecture recordings separately ahead of time but OpenAI's Whisper is a great package for Speech-to-Text transcription). Change according to preferences. `pageContent` and `metadata` are by default stored in Supabase along with an int8 type for the 'id' column.
+Inside the `config` folder is `class-website-urls.ts`. Modify to your liking. Project is setup to handle HTML pages in a consistent HTML/CSS format, which are then scraped using the `Cheerio` web package. Modify `utils/custom_web_loader.ts` to control which CSS elements of the webpages' text you want scraped.
 
-Manually run the `embed-scripts.ipynb` notebook in the `scripts` folder OR run the package script from terminal:
+Manually run `scrape-embed.ts` from the `scripts` folder OR run the package script from terminal:
 
 ```
-npm run embed
+npm run scrape-embed
 ```
 
-This is a one-time process and depending on size of data you wish to upsert, it can take a few minutes. Check Supabase database to see updates reflected in the rows of your table there.
+This is a one-time process and depending on size of data, it can take up to a few minutes. Check `documents` in your Supabase project and you should see rows populated with the embeddings that were just created.
 
 
 ### Behind-the-scenes: script explained
 
-This code performs the following:
+The `scrape-embed.ts` script:
 
-- Installs the `supabase` Python library using `pip`. This allows interaction with a Supabase database.
-- Loads various libraries:
-
-    `supabase` - For interacting with Supabase
-    
-    `langchain` - For text processing and vectorization
-
-    `json` - For loading JSON metadata files
-
-- Loads the Supabase URL and API key from `.env`. This is used to create a `supabase_client` to connect to the Supabase database.
-- Loads text data from .txt lecture transcripts and JSON metadata files.
-- Uses a `RecursiveCharacterTextSplitter` to split the lecture text into chunks. This allows breaking the text into manageable pieces for processing. Chunk size and chunk overlap can be changed according to preference and basically control the amount of specificity. A larger chunk size and smaller overlap will result in fewer, broader chunks, while a smaller chunk size and larger overlap will produce more, narrower chunks.
-- Creates OpenAI `text-embedding-ada-002` embeddings. This makes several vectors of 1536 dimensionality optimized for cosine similarity searches. These vectors are then combined with the metadata in the JSON files along with other lecture-specific info and upserted to the database as vector embeddings in row tabular format i.e. a `SupabaseVectorStore`.
+- Retrieves URLs from `/config/class-website-urls.ts`, extract the HTML/CSS data via `Cheerio` as specified in `/utils/custom_web_loader.ts` 
+- Vectorizes and embeds data into a JSON object using OpenAI's Embeddings(text-embedding-ada-002). This makes several vectors of 1536 dimensionality optimized for cosine similarity searches.
+- Upserts embeddings into `documents` (Supabase vectorstore). The upsert operation inserts new rows and overwrites existing rows.
 
 
 ### Run the app
-
-Run app and verify everything went smoothly:
 
 ```
 npm run dev
 ```
 
-Should be able to type and ask questions now as you will any other chatbot.
+You should be able to type and ask questions now. Done ✅ 
 
+
+## Next steps
+
+### Deploy
+
+I used [Vercel](https://vercel.com/dashboard) as this was a small project.
+
+_Alternatives: Heroku, Firebase, AWS Elastic Beanstalk, DigitalOcean, etc._
 
 ### Customizations
 
-Change UI to your liking. 
-Edit prompt template in `utils/makechain.ts` to fine-tune and add greater control on bot's outputs.
+**UI/UX:** Change to your liking. 
+
+**Bot behavior:** Edit prompt template in `/utils/makechain.ts` to fine-tune and add greater control on the bot's outputs.
+
+**Data:** change URLs to process other relevant pages
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 <!-- BUILT WITH -->
 ## 🔧 Built With
-* [![Next][Next]][Next-url]
-* [![Typescript][Typescript]][Typescript-url]
-* [![Langchain][Langchain]][Langchain-url]
-* [![OpenAI][OpenAI]][OpenAI-url]
-* [![Supabase][Supabase]][Supabase-url]
-* [![Tailwind CSS][TailwindCSS]][TailwindCSS-url]
+[![Next][Next]][Next-url]
+[![Typescript][Typescript]][Typescript-url]
+[![Langchain][Langchain]][Langchain-url]
+[![OpenAI][OpenAI]][OpenAI-url]
+[![cheerio][cheerio]][cheerio-url]
+[![Supabase][Supabase]][Supabase-url]
+[![Tailwind CSS][TailwindCSS]][TailwindCSS-url]
+[![Vercel][Vercel]][Vercel-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -162,12 +163,19 @@ Edit prompt template in `utils/makechain.ts` to fine-tune and add greater contro
 [TailwindCSS]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=skyblue&color=0A192F
 [TailwindCSS-url]: https://tailwindcss.com/
 
-[OpenAI]: https://img.shields.io/badge/OpenAI%20ada--002%20GPT--3-0058A0?style=for-the-badge&logo=openai&logoColor=white&color=black
+[OpenAI]: https://img.shields.io/badge/OpenAI%20ada--002%20GPT--3-0058A0?style=for-the-badge&logo=openai&logoColor=white&color=4aa481
 [OpenAI-url]: https://openai.com/
+
+[cheerio]: https://img.shields.io/badge/cheerio-DD0031?style=for-the-badge&logo=cheerio&logoColor=white&color=db903c
+[cheerio-url]: https://cheerio.js.org/
 
 [TypeScript]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
 [Typescript-url]: https://www.typescriptlang.org/
 
 [Supabase]: https://img.shields.io/badge/Supabase%20pgvector-FFCA28?style=for-the-badge&logo=Supabase&logoColor=49E879&color=black
 [Supabase-url]: https://Supabase.com/
+
+[Vercel]: https://img.shields.io/badge/Vercel-FFFFFF?style=for-the-badge&logo=Vercel&logoColor=white&color=black
+[Vercel-url]: https://Vercel.com/
+
 
