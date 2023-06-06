@@ -97,6 +97,8 @@ The `scrape-embed.ts` script:
 - Vectorizes and embeds data into a JSON object using OpenAI's Embeddings(text-embedding-ada-002). This makes several vectors of 1536 dimensionality optimized for cosine similarity searches.
 - Upserts embeddings into `documents` (Supabase vectorstore). The upsert operation inserts new rows and overwrites existing rows.
 
+![visualized-flow-chart](https://github.com/vdutts7/cs186-ai-chat/assets/63992417/abb4be4c-06da-4be2-b29e-b10134e17c24)
+
 
 ### Run the app
 
