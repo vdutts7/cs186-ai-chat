@@ -5,7 +5,7 @@
     <img src="https://github.com/vdutts7/cs186-ai-chat/blob/main/public/UC-Berkeley-Emblem.png" alt="Logo" width="140" height="80">
     <img src="https://github.com/vdutts7/cs186-ai-chat/blob/main/public/robot.png" alt="Logo" width="80" height="80">
   </a>
-  <h3 align="center">CS186 AI Chat</h3>
+  <h3 align="center">CS186 AI Chatbot</h3>
   <p align="center">
     CS186 AI Chatbot ~ trained on <a href="https://cs186berkeley.net/">official course website</a>
   </p>
