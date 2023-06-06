@@ -71,7 +71,7 @@ _**IMPORTANT: Verify that `.gitignore` contains `.env` in it.**_
 
 ### Prepare Supabase environment
 
-I used Supabase as my vectorstore. _Alternatives: Pinecone, Qdrant, Weaviate, Chroma, etc. _
+I used Supabase as my vectorstore. _Alternatives: Pinecone, Qdrant, Weaviate, Chroma, etc_
 
 You should have already created a Supabase project to get your API keys. Inside the project's SQL editor, create a new query and run the `schema.sql`. You should now have a `documents` table created with 4 columns.
 
