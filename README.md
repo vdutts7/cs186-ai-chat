@@ -117,11 +117,11 @@ _Alternatives: Heroku, Firebase, AWS Elastic Beanstalk, DigitalOcean, etc._
 
 ### Customizations
 
-**UI/UX:** Change to your liking. 
+**UI/UX:** change to your liking. 
 
-**Bot behavior:** Edit prompt template in `/utils/makechain.ts` to fine-tune and add greater control on the bot's outputs.
+**Bot behavior:** edit prompt template in `/utils/makechain.ts` to fine-tune and add greater control on the bot's outputs.
 
-**Data:** change URLs to process other relevant pages
+**Data:** change URLs to handle whatever pages you want
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -145,7 +145,7 @@ _Alternatives: Heroku, Firebase, AWS Elastic Beanstalk, DigitalOcean, etc._
 
 `me@vdutts7.com` 
 
-🔗 Project Link: https://github.com/vdutts7/cs186-ai-chat
+🔗 Project Link: `https://github.com/vdutts7/cs186-ai-chat`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -166,7 +166,7 @@ _Alternatives: Heroku, Firebase, AWS Elastic Beanstalk, DigitalOcean, etc._
 [OpenAI]: https://img.shields.io/badge/OpenAI%20ada--002%20GPT--3-0058A0?style=for-the-badge&logo=openai&logoColor=white&color=4aa481
 [OpenAI-url]: https://openai.com/
 
-[cheerio]: https://img.shields.io/badge/cheerio-DD0031?style=for-the-badge&logo=cheerio&logoColor=white&color=db903c
+[cheerio]: https://img.shields.io/badge/cheerio-DD0031?style=for-the-badge&logo=https://github.com/vdutts7/cs186-ai-chat/public/cheerio-logo.png&logoColor=white&color=db903c
 [cheerio-url]: https://cheerio.js.org/
 
 [TypeScript]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
