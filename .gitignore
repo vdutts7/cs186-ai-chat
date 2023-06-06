@@ -18,7 +18,6 @@
 # misc
 .DS_Store
 *.pem
-/public/cheerio-logo.png
 
 # debug
 npm-debug.log*
