@@ -48,7 +48,7 @@ _Note: macOS version, adjust accordingly for Windows / Linux_
 Clone this repo & install packages using pnpm
 
 ```
-git clone [https://github.com/vdutts7/cs186-ai-chat]
+git clone https://github.com/vdutts7/cs186-ai-chat
 cd cs186-ai-chat
 pnpm install
 ```
@@ -72,7 +72,7 @@ _**IMPORTANT: Verify that `.gitignore` contains `.env` in it.**_
 
 ### Prepare Supabase environment
 
-I used Supabase as my vectorstore. Alternatives include: FAISS, Chroma, Nuclei, Pinecone, Milvus, and many more you can research about. Most are free or open-source. 
+I used Supabase as my vectorstore. Alternatives include: Pinecone, Qdrant, Redis, Weaviate, Chroma, Nuclei, Milvus, FAISS, HNSWLib and many more you can research about. Most are free or open-source. 
 
 Copy paste contents of `schema.sql` in SQL editor of Supabase. Ensure the `documents` table in Supabase's database that is created matches and corresponds with local file's `match_documents` function.
 
