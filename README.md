@@ -78,7 +78,7 @@ You should have already created a Supabase project to get your API keys. Inside 
 
 ### Scraping, embedding, & upserting data
 
-Inside the `config` folder is `class-website-urls.ts`. Modify to your liking. Project is setup to handle HTML pages in a consistent HTML/CSS format, which are then scraped using the `Cheerio` web package. Modify `utils/custom_web_loader.ts` to control which CSS elements of the webpages' text you want scraped.
+Inside the `config` folder is `class-website-urls.ts`. Modify to your liking. Project is setup to handle HTML pages in a consistent HTML/CSS format, which are then scraped using the `cheerio` jQuery package. Modify `/utils/custom_web_loader.ts` to control which CSS elements of the webpages' text you want scraped.
 
 Manually run `scrape-embed.ts` from the `scripts` folder OR run the package script from terminal:
 
