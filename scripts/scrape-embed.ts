@@ -14,22 +14,22 @@ async function extractDataFromUrl(url: string): Promise<Document[]> {
     const docs = await loader.load();
     return docs;
   } catch (error) {
-    console.error(`FARTS! Issue while extracting data from ${url}: ${error}`);
+    console.error(`Farts! I got hit with an issue while extracting data from ${url}: ${error}`);
     return [];
   }
 }
 
 async function extractDataFromUrls(urls: string[]): Promise<Document[]> {
-  console.log('extracting text from the cs186 website...');
+  console.log('extracting data from CS186 website...');
   const documents: Document[] = [];
   for (const url of urls) {
     const docs = await extractDataFromUrl(url);
     documents.push(...docs);
   }
-  console.log('data extracted from the cs186 website');
+  console.log('data extracted from the CS186 website');
   const json = JSON.stringify(documents);
   await fs.writeFile('cs186.json', json);
-  console.log('json file containing text from the cs186 class website ~ saved on disk');
+  console.log('json file containing text from the CS186 class website ~ saved on disk');
   return documents;
 }
 
@@ -38,9 +38,9 @@ async function embedDocuments(
   docs: Document[],
   embeddings: Embeddings,
 ) {
-  console.log('creating embeddings for the class website...');
+  console.log('creating embeddings...');
   await SupabaseVectorStore.fromDocuments(client, docs, embeddings);
-  console.log('the embeddings were successfully stored in Supabase');
+  console.log('embeddings successfully upserted');
 }
 
 async function splitDocsIntoChunks(docs: Document[]): Promise<Document[]> {
@@ -56,7 +56,7 @@ async function splitDocsIntoChunks(docs: Document[]): Promise<Document[]> {
     //load text from each url and chunk it up
     const rawDocs = await extractDataFromUrls(urls);
     const docs = await splitDocsIntoChunks(rawDocs);
-    await embedDocuments(supabaseClient, docs, new OpenAIEmbeddings());   //embed into db --> supabase
+    await embedDocuments(supabaseClient, docs, new OpenAIEmbeddings());   //embed into vectorstore database --> supabase
   } catch (error) {
     console.log('Oopsie poopsie, something failed: ', error);
   }
