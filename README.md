@@ -69,6 +69,7 @@ Get API keys:
 _**IMPORTANT: Verify that `.gitignore` contains `.env` in it.**_
 
 
+
 ### Prepare Supabase environment
 
 I used Supabase as my vectorstore. _Alternatives: Pinecone, Qdrant, Weaviate, Chroma, etc_
