@@ -12,20 +12,28 @@
 </div>
 
 <!-- TABLE OF CONTENTS -->
-## 📖 Table of Contents
+## Table of Contents
   <ol>
-    <li><a href="#about">About</a></li>
-    <li><a href="#how-to-build">How to Build</a></li>
+    <a href="#about">📝 About</a>
         <ul>
-             <li>Initial setup</li>
-             <li>Prepare Supabase environment</li>
-             <li>Embedding & upserting data into Supabase vectorstore</li>
-             <li>Behind-the-scenes: script explained</li>
-             <li>Run the app</li>
-             <li>Customizations</li>
         </ul>
-    <li><a href="#built-with">Built With</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <a href="#how-to-build">💻 How to build</a>
+        <ul>
+            <li><a href="#initial-setup">Initial setup</a></li>
+            <li><a href=#prepare-supabase-environment>Prepare Supabase environment</a></li>
+            <li><a href=#embed-and-upsert>Embed and upsert</a></li>
+            <li><a href=#technical-explanation>Technical explanation</a></li>
+            <li><a href=#run-app>Run app</a></li>
+        </ul>
+    <a href="#next-steps">🚀 Next steps</a>
+        <ul>
+            <li><a href=#deploy>Deploy</a></li>
+            <li><a href=#customizations>Customizations</a></li>
+        </ul>
+    <a href="#tools-used">🔧 Tools used</a>
+        <ul>
+        </ul>
+    <a href="#contact">👤 Contact</a>
   </ol>
 
 
@@ -39,7 +47,7 @@ _UC Berkeley 🐻🔵🟡 • CS186: Introduction to Database Systems • Spring
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p> 
 
-## 💻 How to Build 
+## 💻 How to build 
 
 _Note: macOS version, adjust accordingly for Windows / Linux_
 
@@ -77,7 +85,7 @@ I used Supabase as my vectorstore. _Alternatives: Pinecone, Qdrant, Weaviate, Ch
 You should have already created a Supabase project to get your API keys. Inside the project's SQL editor, create a new query and run the `schema.sql`. You should now have a `documents` table created with 4 columns.
 
 
-### Scraping, embedding, & upserting data
+### Embedding and upserting
 
 Inside the `config` folder is `class-website-urls.ts`. Modify to your liking. Project is setup to handle HTML pages in a consistent HTML/CSS format, which are then scraped using the `cheerio` jQuery package. Modify `/utils/custom_web_loader.ts` to control which CSS elements of the webpages' text you want scraped.
 
@@ -90,18 +98,18 @@ npm run scrape-embed
 This is a one-time process and depending on size of data, it can take up to a few minutes. Check `documents` in your Supabase project and you should see rows populated with the embeddings that were just created.
 
 
-### Behind-the-scenes: script explained
+### Technical explanation
 
 The `scrape-embed.ts` script:
 
-- Retrieves URLs from `/config/class-website-urls.ts`, extract the HTML/CSS data via `Cheerio` as specified in `/utils/custom_web_loader.ts` 
+- Retrieves URLs from `/config/class-website-urls.ts`, extract the HTML/CSS data via `cheerio` as specified in `/utils/custom_web_loader.ts` 
 - Vectorizes and embeds data into a JSON object using OpenAI's Embeddings(text-embedding-ada-002). This makes several vectors of 1536 dimensionality optimized for cosine similarity searches.
 - Upserts embeddings into `documents` (Supabase vectorstore). The upsert operation inserts new rows and overwrites existing rows.
 
 ![visualized-flow-chart](https://github.com/vdutts7/cs186-ai-chat/assets/63992417/abb4be4c-06da-4be2-b29e-b10134e17c24)
 
 
-### Run the app
+### Run app
 
 ```
 npm run dev
@@ -110,7 +118,7 @@ npm run dev
 Go to `http://localhost:3000`. You should be able to type and ask questions now. Done ✅ 
 
 
-## Next steps
+## 🚀 Next steps
 
 ### Deploy
 
